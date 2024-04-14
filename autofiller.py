@@ -16,6 +16,8 @@ import mutagen
 from mutagen.mp3 import MP3
 from mutagen.id3 import ID3NoHeaderError, TALB, TPE1, TPE2, TCON, TYER, TRCK, TIT2, APIC, TPOS
 
+from dotenv import load_dotenv
+
 
 class Song:
     def __init__(self, title, artist, path):
@@ -26,8 +28,9 @@ class Song:
 
 def main():
     # Replace these two variables with your own id values.
-    client_id = "PLACEHOLDER"
-    client_secret = "PLACEHOLDER"
+    load_dotenv()
+    client_id = os.environ.get("CLIENT_ID")
+    client_secret = os.environ.get("CLIENT_SECRET")
 
     # Get track and artist names from all tracks.
     file_paths = get_input_files()
